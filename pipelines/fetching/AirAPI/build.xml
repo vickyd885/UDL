@@ -12,6 +12,10 @@
      <pathelement location="lib/okhttp-3.9.1.jar" />
    </path>
 
+   <path id="gson">
+     <pathelement location="lib/gson-2.6.2.jar" />
+   </path>
+
 
 
    <path id="classfiles">
@@ -40,6 +44,7 @@
        <!-- <classpath refid="jsonjar" /> -->
        <classpath refid="okio" />
        <classpath refid="okhttp" />
+       <classpath refid="gson" />
      </javac>
    </target>
    <target name="run" depends="compile,init">
