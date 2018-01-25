@@ -4,9 +4,15 @@
      <pathelement location="lib/json-simple-1.1.1.jar" />
    </path>
 
-   <path id="jodajar">
-     <pathelement location="lib/joda-time-2.9.9.jar" />
+   <path id="okio">
+     <pathelement location="lib/okio-1.13.0.jar" />
    </path>
+
+   <path id="okhttp">
+     <pathelement location="lib/okhttp-3.9.1.jar" />
+   </path>
+
+
 
    <path id="classfiles">
      <pathelement location="target" />
@@ -21,24 +27,24 @@
       <property name="outputDir" value="target" />
    </target>
 
-
    <target name="clean" depends="init">
       <delete dir="${outputDir}" />
    </target>
+
    <target name="prepare" depends="clean">
       <mkdir dir="${outputDir}" />
    </target>
+
    <target name="compile" depends="prepare">
      <javac srcdir="${sourceDir}" destdir="${outputDir}" debug="on">
-       <classpath refid="uberjar" />
-       <classpath refid="jsonjar" />
-       <classpath refid="jodajar" />
+       <!-- <classpath refid="jsonjar" /> -->
+       <classpath refid="okio" />
+       <classpath refid="okhttp" />
      </javac>
    </target>
    <target name="run" depends="compile,init">
-     <java classname="Filter" classpathref="runtime.path">
+     <java classname="Execute" classpathref="runtime.path">
        <classpath refid="classfiles"/>
-       <arg value="${arg0}"/>
      </java>
   </target>
 </project>

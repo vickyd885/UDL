@@ -1,54 +1,40 @@
 
 import java.util.LinkedList;
-import org.apache.commons.httpclient.*;
-import org.apache.commons.httpclient.methods.*;
-import org.apache.commons.httpclient.params.HttpMethodParams;
 
-import java.io.*;
+
+import java.io.IOException;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 // This class should be the entry point for the ETL process
 public class Execute{
 
-  private final String API_URL_ENTRY = "http://api.erg.kcl.ac.uk/AirQuality/Information/MonitoringSites/GroupName=London/Json";
+  private final static String API_URL_ENTRY = "http://api.erg.kcl.ac.uk/AirQuality/Information/MonitoringSites/GroupName=London/Json";
 
 
   public static void main(String[] args) {
 
+    try {
+      getSiteInformation();
+    }catch(Exception e){
+      //
+    }
+
   }
 
   // returns all the sites as a linked list
-  private LinkedList<Site> getSiteInformation(){
+  private static void getSiteInformation() throws IOException{
+    OkHttpClient client = new OkHttpClient();
 
-    HttpClient client = new HttpClient();
-    GetMethod method = new GetMethod(API_URL_ENTRY);
+    Request request = new Request.Builder()
+    .url(API_URL_ENTRY)
+    .build();
 
-    method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER,
-           new DefaultHttpMethodRetryHandler(3, false));
+    Response response = client.newCall(request).execute();
 
-    try {
-     // Execute the method.
-     int statusCode = client.executeMethod(method);
+    String ans = response.body().string();
+    System.out.println(ans);
 
-     if (statusCode != HttpStatus.SC_OK) {
-       System.err.println("Method failed: " + method.getStatusLine());
-     }
-
-     // Read the response body.
-     byte[] responseBody = method.getResponseBody();
-
-     // Deal with the response.
-     // Use caution: ensure correct character encoding and is not binary data
-     System.out.println(new String(responseBody));
-
-   } catch (HttpException e) {
-     System.err.println("Fatal protocol violation: " + e.getMessage());
-     e.printStackTrace();
-   } catch (IOException e) {
-     System.err.println("Fatal transport error: " + e.getMessage());
-     e.printStackTrace();
-   } finally {
-     // Release the connection.
-     method.releaseConnection();
-   }
   }
 }
