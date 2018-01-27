@@ -9,12 +9,18 @@ import java.util.Map;
 import java.util.Set;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class SiteGatherer{
 
 
-  private final static String API_URL_ENTRY = "http://api.erg.kcl.ac.uk/AirQuality/Information/MonitoringSites/GroupName=London/Json";
+  private final String API_URL_ENTRY = "http://api.erg.kcl.ac.uk/AirQuality/Information/MonitoringSites/GroupName=London/Json";
 
+  private List<Site> listOfSites;
+
+  public SiteGatherer(){
+    this.listOfSites = null;
+  }
   public void query(){
 
     try{
@@ -42,28 +48,33 @@ public class SiteGatherer{
   }
 
 
+
   private void handleResponse(String json){
 
-    GsonBuilder gsonBuilder = new GsonBuilder();
-    gsonBuilder.registerTypeAdapter(Site.class, new SiteDeseraliser());
-    Gson gson = gsonBuilder.create();
+    Gson gson = createGsonInstance();
+
 
     SiteInfo siteInfo = gson.fromJson(json, SiteInfo.class);
 
-    System.out.println(siteInfo);
-
     List<Site> sites = siteInfo.getListOfSites();
 
-    int i = 0;
-    for(Site s : sites){
-      System.out.println(s);
-      i++;
-    }
-    System.out.println(i);
+    System.out.println("Number of sites found: " + sites.size());
+
+    this.listOfSites = sites;
+  }
 
 
 
+  private Gson createGsonInstance(){
+    GsonBuilder gsonBuilder = new GsonBuilder();
+    gsonBuilder.registerTypeAdapter(Site.class, new SiteDeseraliser());
+    Gson gson = gsonBuilder.create();
+    return gson;
+  }
 
+
+  public List<Site> getListOfSites(){
+    return this.listOfSites;
   }
 
 }
