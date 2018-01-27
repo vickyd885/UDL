@@ -12,6 +12,11 @@ public class Execute{
     SiteGatherer s = new SiteGatherer();
     s.query();
 
+    System.out.println(s.getListOfSites().size());
+
+    AirPollutionGatherer apg = new AirPollutionGatherer();
+
+    apg.start(s.getListOfSites());
   }
 
   // returns all the sites as a linked list

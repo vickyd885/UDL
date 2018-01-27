@@ -56,7 +56,6 @@ public class SiteDeseraliser implements JsonDeserializer<Site> {
     site.setSiteName(SiteName);
     site.setSiteType(SiteType);
 
-
     return site;
   }
 }
