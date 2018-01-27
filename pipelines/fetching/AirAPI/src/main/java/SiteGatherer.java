@@ -3,10 +3,12 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.Map;
 import java.util.Set;
 import java.util.List;
+import java.util.ArrayList;
 
 public class SiteGatherer{
 
@@ -42,21 +44,23 @@ public class SiteGatherer{
 
   private void handleResponse(String json){
 
-    Gson gson = new Gson();
+    GsonBuilder gsonBuilder = new GsonBuilder();
+    gsonBuilder.registerTypeAdapter(Site.class, new SiteDeseraliser());
+    Gson gson = gsonBuilder.create();
 
-    Map<String, Object> jsonObject1 = gson.fromJson(json, Map.class);
+    SiteInfo siteInfo = gson.fromJson(json, SiteInfo.class);
 
-    String json2 = jsonObject1.get("Sites").toString();
+    System.out.println(siteInfo);
 
-    //System.out.println(json2);
-    List<Object> jsonObject2 = gson.fromJson(json2, List.class);
+    List<Site> sites = siteInfo.getListOfSites();
 
-    for(Object o : jsonObject2){
-      System.out.println(o);
+    int i = 0;
+    for(Site s : sites){
+      System.out.println(s);
+      i++;
     }
+    System.out.println(i);
 
-    // Map<String,Object> map = new HashMap<String,Object>();
-    // map = (Map<String,Object>) gson.fromJson(json, map.getClass());
 
 
 
