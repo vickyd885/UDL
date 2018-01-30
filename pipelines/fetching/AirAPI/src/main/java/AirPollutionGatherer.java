@@ -5,28 +5,52 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 import java.util.List;
+import java.util.LinkedList;
+import java.util.HashMap;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+
 
 public class AirPollutionGatherer{
 
   private String API_URL_ENTRY = "http://api.erg.kcl.ac.uk/AirQuality/Annual/MonitoringReport/";
 
+  private String BASE_DIRECTORY;
 
+  private Gson gson;
+
+  private PollutionAssocWrapper pWrapper;
+
+  private List<String> years;
+
+  public AirPollutionGatherer(String base_dir){
+    this.BASE_DIRECTORY = base_dir;
+    this.pWrapper = new PollutionAssocWrapper();
+    this.gson = createGsonInstance();
+    this.years = createListOfYears();
+  }
 
   public void start(List<Site> sites){
-    for(Site s : sites){
+    int i = 0;
+    for(String year : this.years){
 
-      try{
-        query(s.getSiteCode(), "2015");
-      }catch(Exception e){
+      for(Site site : sites){
+        try{
+          query(site.getSiteCode(), "2015");
+        }catch(Exception e){
 
-      }finally{
-
+        }finally{
+          i++;
+          if(i > 2) break;
+        }
       }
-
+      save(getFileWritePath(year));
+      this.pWrapper.clean();
     }
+
+
   }
 
 
@@ -45,24 +69,15 @@ public class AirPollutionGatherer{
     Response response = client.newCall(request).execute();
     String responseAsString = response.body().string();
 
-    handleResponse(responseAsString);
+    handleResponse(responseAsString, siteCode);
   }
 
-
-  private void handleResponse(String response){
-
-    System.out.println(response);
+  private void handleResponse(String response, String siteCode){
+    //System.out.println(response);
     if(response.equals("{\"SiteReport\":null}")) return;
 
-    Gson gson = createGsonInstance();
-
-    PollutionInfo pollutionInfo = gson.fromJson(response, PollutionInfo.class);
-
-    System.out.println(pollutionInfo);
-
-    List<PollutionItem> plist = pollutionInfo.getList();
-
-    System.out.println(plist.size());
+    PollutionInfo pollutionInfo = this.gson.fromJson(response, PollutionInfo.class);
+    this.pWrapper.add(siteCode, pollutionInfo);
   }
 
   private Gson createGsonInstance(){
@@ -70,6 +85,23 @@ public class AirPollutionGatherer{
     gsonBuilder.registerTypeAdapter(PollutionItem.class, new PollutionItemDeserialiser());
     Gson gson = gsonBuilder.create();
     return gson;
+  }
+
+  public List<String> createListOfYears(){
+    List<String> years = new LinkedList<String>();
+    years.add("2014");
+    years.add("2015");
+    return years;
+  }
+
+  private String getFileWritePath(String year){
+    return this.BASE_DIRECTORY + "/" + year + "/AirPollutionData.json";
+  }
+
+  private void save(String path){
+    String data = this.gson.toJson(this.pWrapper, PollutionAssocWrapper.class);
+    System.out.println("saved data" + data);
+    JSONWriter.writeToJsonFile(data, path);
   }
 
 

@@ -1,8 +1,4 @@
-
 import java.util.LinkedList;
-
-
-
 
 // This class should be the entry point for the ETL process
 public class Execute{
@@ -14,7 +10,7 @@ public class Execute{
 
     System.out.println(s.getListOfSites().size());
 
-    AirPollutionGatherer apg = new AirPollutionGatherer();
+    AirPollutionGatherer apg = new AirPollutionGatherer("output");
 
     apg.start(s.getListOfSites());
   }
