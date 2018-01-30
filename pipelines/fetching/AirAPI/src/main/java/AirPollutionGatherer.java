@@ -18,6 +18,7 @@ public class AirPollutionGatherer{
   private String API_URL_ENTRY = "http://api.erg.kcl.ac.uk/AirQuality/Annual/MonitoringReport/";
 
   private String BASE_DIRECTORY;
+  private String FILE_NAME = "airpollution.json";
 
   private Gson gson;
 
@@ -95,13 +96,13 @@ public class AirPollutionGatherer{
   }
 
   private String getFileWritePath(String year){
-    return this.BASE_DIRECTORY + "/" + year + "/AirPollutionData.json";
+    return this.BASE_DIRECTORY + "/" + year;
   }
 
   private void save(String path){
     String data = this.gson.toJson(this.pWrapper, PollutionAssocWrapper.class);
     System.out.println("saved data" + data);
-    JSONWriter.writeToJsonFile(data, path);
+    JSONWriter.writeToJsonFile(data, path, this.FILE_NAME);
   }
 
 
