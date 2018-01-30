@@ -1,0 +1,56 @@
+<project name="simpleCompile" default="run" basedir=".">
+
+   <path id="simple-json">
+     <pathelement location="lib/json-simple-1.1.1.jar" />
+   </path>
+
+   <path id="okio">
+     <pathelement location="lib/okio-1.13.0.jar" />
+   </path>
+
+   <path id="okhttp">
+     <pathelement location="lib/okhttp-3.9.1.jar" />
+   </path>
+
+   <path id="gson">
+     <pathelement location="lib/gson-2.6.2.jar" />
+   </path>
+
+
+
+   <path id="classfiles">
+     <pathelement location="target" />
+   </path>
+
+   <path id="runtime.path">
+        <fileset dir="lib" includes="*.jar"/>
+   </path>
+
+   <target name="init">
+      <property name="sourceDir" value="src" />
+      <property name="outputDir" value="target" />
+   </target>
+
+   <target name="clean" depends="init">
+      <delete dir="${outputDir}" />
+   </target>
+
+   <target name="prepare" depends="clean">
+      <mkdir dir="${outputDir}" />
+   </target>
+
+   <target name="compile" depends="prepare">
+     <javac srcdir="${sourceDir}" destdir="${outputDir}" debug="on">
+       <!-- <classpath refid="jsonjar" /> -->
+       <classpath refid="okio" />
+       <classpath refid="okhttp" />
+       <classpath refid="gson" />
+       <classpath refid="simple-json" />
+     </javac>
+   </target>
+   <target name="run" depends="compile,init">
+     <java classname="Execute" classpathref="runtime.path">
+       <classpath refid="classfiles"/>
+     </java>
+  </target>
+</project>

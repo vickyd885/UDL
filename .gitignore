@@ -3,3 +3,11 @@ jupyter-experiments/env
 jupyter-experiments/datasets
 
 .ipynb_checkpoints
+
+
+.DS_Store
+
+pipelines/fetching/AirAPI/lib/*.jar
+
+
+*.class
