@@ -7,7 +7,7 @@ jupyter-experiments/datasets
 
 .DS_Store
 
-pipelines/fetching/AirAPI/lib/*.jar
+pipelines/fetching/AirAPI/output
 
 
 *.class
