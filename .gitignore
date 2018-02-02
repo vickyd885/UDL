@@ -11,3 +11,6 @@ pipelines/fetching/AirAPI/output
 
 
 *.class
+
+
+pipelines/dbserve/init/ldddata_1710006.sql.tar
