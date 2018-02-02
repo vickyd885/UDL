@@ -1,0 +1,10 @@
+postgres:
+  restart: always
+  image: postgres:10.1
+  ports:
+    - '5432:5432'
+  environment:
+    POSTGRES_USER: 'ldd_user'
+    POSTGRES_PASSWORD: 'pass'
+  volumes:
+    - /Users/VickyD/Desktop/Year4/Final Year Project/UDL/pipelines/dbserve/init:/docker-entrypoint-initdb.d/
