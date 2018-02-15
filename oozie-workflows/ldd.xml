@@ -1,0 +1,42 @@
+<workflow-app xmlns='uri:oozie:workflow:0.1' name='ldd-docker-job'>
+    <start to='core' />
+
+    <action name='docker-up'>
+        <shell>
+            <!-- <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node> -->
+            <exec>../pipelines/fetching/AirAPI/run.sh</exec>
+            <capture-output/>
+        </shell>
+        <ok to="query-db" />
+        <error to="fail" />
+    </action>
+
+    <action name='query-db'>
+        <java>
+            <!-- <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node> -->
+            <exec>../pipelines/fetching/AirAPI/run.sh</exec>
+            <capture-output/>
+        </java>
+        <ok to="end" />
+        <error to="fail" />
+    </action>
+
+    <action name='docker-up'>
+        <java>
+            <!-- <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node> -->
+            <exec>../pipelines/fetching/AirAPI/run.sh</exec>
+            <capture-output/>
+        </java>
+        <ok to="end" />
+        <error to="fail" />
+    </action>
+
+
+    <kill name="fail">
+        <message>Failure!</message>
+    </kill>
+    <end name='end'/>
+</workflow-app>
