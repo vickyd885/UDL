@@ -1,0 +1,13 @@
+[Unit]
+Description=JupyterNotebook
+
+[Service]
+Type=simple
+Environment="PATH=/home/jnserver/jn/env/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin"
+ExecStart=/home/jnserver/jn/env/bin/jupyter-notebook
+User=jnserver
+Group=jnserver
+WorkingDirectory=/home/jnserver/jn/notebooks
+
+[Install]
+WantedBy=multi-user.target
