@@ -11,8 +11,6 @@ import java.util.HashMap;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-
-
 public class AirPollutionGatherer{
 
   private String API_URL_ENTRY = "http://api.erg.kcl.ac.uk/AirQuality/Annual/MonitoringReport/";
@@ -39,14 +37,16 @@ public class AirPollutionGatherer{
 
       for(Site site : sites){
         try{
-          query(site.getSiteCode(), "2015");
+          query(site.getSiteCode(), year);
+          System.out.println("Searching for " + site + " and year: " + year);
         }catch(Exception e){
 
         }finally{
           i++;
-          if(i > 2) break;
+          //if(i > 2) break;
         }
       }
+
       save(getFileWritePath(year));
       this.pWrapper.clean();
     }
@@ -101,7 +101,7 @@ public class AirPollutionGatherer{
 
   private void save(String path){
     String data = this.gson.toJson(this.pWrapper, PollutionAssocWrapper.class);
-    System.out.println("saved data" + data);
+    System.out.println("saving to " + path);
     JSONWriter.writeToJsonFile(data, path, this.FILE_NAME);
   }
 
