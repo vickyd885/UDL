@@ -37,25 +37,24 @@ public class AirPollutionGatherer{
 
       for(Site site : sites){
         try{
-          query(site.getSiteCode(), year);
+          query(site, year);
           System.out.println("Searching for " + site + " and year: " + year);
         }catch(Exception e){
 
         }finally{
           i++;
-          //if(i > 2) break;
+          if(i > 2) break;
         }
       }
 
       save(getFileWritePath(year));
       this.pWrapper.clean();
     }
-
-
   }
 
+  public void query(Site site, String year) throws IOException{
 
-  public void query(String siteCode, String year) throws IOException{
+    String siteCode = site.getSiteCode();
 
     String final_url = API_URL_ENTRY + "SiteCode=" + siteCode + "/Year=" + year;
     final_url += "/Json";
@@ -70,14 +69,22 @@ public class AirPollutionGatherer{
     Response response = client.newCall(request).execute();
     String responseAsString = response.body().string();
 
-    handleResponse(responseAsString, siteCode);
+    handleResponse(responseAsString, site);
   }
 
-  private void handleResponse(String response, String siteCode){
+  private void handleResponse(String response, Site site){
     //System.out.println(response);
     if(response.equals("{\"SiteReport\":null}")) return;
 
+    String siteCode = site.getSiteCode();
+
     PollutionInfo pollutionInfo = this.gson.fromJson(response, PollutionInfo.class);
+
+    pollutionInfo.getSiteReport().setLatitude(site.getLatitude());
+    pollutionInfo.getSiteReport().setLongitgude(site.getLongitude());
+
+    //String data = this.gson.toJson(pollutionInfo, PollutionInfo.class);
+    //System.out.println(data);
     this.pWrapper.add(siteCode, pollutionInfo);
   }
 
@@ -90,7 +97,7 @@ public class AirPollutionGatherer{
 
   public List<String> createListOfYears(){
     List<String> years = new LinkedList<String>();
-    years.add("2014");
+    //years.add("2014");
     years.add("2015");
     return years;
   }

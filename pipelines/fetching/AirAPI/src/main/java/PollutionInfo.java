@@ -5,12 +5,28 @@ public class PollutionInfo{
   public List<PollutionItem> getList(){
     return SiteReport.getList();
   }
+
+  public SiteReport getSiteReport(){ return this.SiteReport; }
 }
 
 class SiteReport{
   private List<PollutionItem> ReportItem;
+  private String longitude;
+  private String latitude;
+
   public List<PollutionItem> getList(){
     return ReportItem;
+  }
+
+  public String getLongitude() { return this.longitude; }
+  public String getLatitude() { return this.latitude; }
+
+  public void setLongitgude(String longitude){
+    this.longitude = longitude;
+  }
+
+  public void setLatitude(String latitude){
+    this.latitude = latitude;
   }
 }
 
