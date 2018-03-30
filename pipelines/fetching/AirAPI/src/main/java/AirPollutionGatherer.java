@@ -43,7 +43,7 @@ public class AirPollutionGatherer{
 
         }finally{
           i++;
-          if(i > 2) break;
+          //if(i > 2) break;
         }
       }
 
