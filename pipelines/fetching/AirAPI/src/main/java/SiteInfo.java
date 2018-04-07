@@ -1,5 +1,9 @@
 import java.util.List;
 
+/**
+ * SiteInfo abstracts SiteSchema and Site
+ * This exists to deal with the nasty JSON structure of the JSON String
+ */
 public class SiteInfo {
   private SitesSchema Sites;
 
@@ -8,6 +12,10 @@ public class SiteInfo {
   }
 }
 
+
+/**
+ * Contains a list of sites and provides an getter to that list of sites
+ */
 class SitesSchema{
   private List<Site> Site;
   public List<Site> getList(){
@@ -15,6 +23,11 @@ class SitesSchema{
   }
 }
 
+/**
+ * Site object maintains site data and provides setters/getters to manipulate
+ * this data. This object is the most verbose representation of the API
+ * endpoint
+ */
 class Site{
 
   private String DataManager;
@@ -34,6 +47,10 @@ class Site{
   private String SiteName;
   private String SiteType;
 
+  /**
+   * Defines how to print the object
+   * @return [description]
+   */
   @Override
   public String toString(){
     return SiteCode;

@@ -1,30 +1,67 @@
 import java.util.List;
 
+/**
+ * Holds several pollution data items, mostly to comply with the nasty json
+ * formatting of the TFL AirAPI response
+ */
 public class PollutionInfo{
   private SiteReport SiteReport;
+
+  /**
+   * Returns list of pollution items
+   * @return list of pollution items
+   */
   public List<PollutionItem> getList(){
     return SiteReport.getList();
   }
 
+  /**
+   * Get Site Report
+   * @return Site Report
+   */
   public SiteReport getSiteReport(){ return this.SiteReport; }
 }
 
+/**
+ * SiteReport holds pollution data as well as
+ */
 class SiteReport{
   private List<PollutionItem> ReportItem;
   private String longitude;
   private String latitude;
 
+  /**
+   * Get list of pollution items
+   * @return list of pollution items
+   */
   public List<PollutionItem> getList(){
     return ReportItem;
   }
 
+  /**
+   * Get longitude
+   * @return longitude
+   */
   public String getLongitude() { return this.longitude; }
+
+  /**
+   * Get latititude
+   * @return latititude
+   */
   public String getLatitude() { return this.latitude; }
 
+  /**
+   * Set longitude
+   * @param longitude [description]
+   */
   public void setLongitgude(String longitude){
     this.longitude = longitude;
   }
 
+  /**
+   * Set latitude
+   * @param latitude [description]
+   */
   public void setLatitude(String latitude){
     this.latitude = latitude;
   }

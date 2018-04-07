@@ -7,8 +7,21 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 
 
+/**
+ * Deserialises the JSON response from the API and converts into a native
+ * Java object, PollutionItem.
+ */
 public class PollutionItemDeserialiser implements JsonDeserializer<PollutionItem> {
 
+  /**
+   * Defines how to convert the JSON response from the API into a native
+   * Java object, PollutionItem.
+   * @param  json               json response
+   * @param  typeOfT            type
+   * @param  context            context
+   * @return  PolllutionItem    Object containing pollution item data
+   * @throws JsonParseException [description]
+   */
   @Override
   public PollutionItem deserialize(final JsonElement json,
                           final Type typeOfT,
