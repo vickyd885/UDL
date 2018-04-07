@@ -35,8 +35,8 @@
    <target name="init">
       <property name="sourceDir" value="src" />
       <property name="outputDir" value="target" />
-      <property name="test.src.dir" value="test" />
-      <property name="test.dest.dir" value="target_test"/>
+      <property name="testSrcDir" value="test/main/java" />
+      <property name="testDestDir" value="target_test"/>
    </target>
 
    <target name="clean" depends="init">
@@ -63,9 +63,13 @@
   </target>
 
   <target name="test-compile" depends="init">
-    <mkdir dir="${test.build.dir}"/>
-    <javac srcdir="${test.src.dir}" destdir="${test.build.dir}" includeantruntime="false">
+    <mkdir dir="${testDestDir}"/>
+    <javac srcdir="${testSrcDir}" destdir="${testDestDir}" includeantruntime="false">
       <classpath>
+        <path refid="okio" />
+        <path refid="okhttp" />
+        <path refid="gson" />
+        <path refid="simple-json" />
         <path refid="junit"/>
         <path refid="hamcrest"/>
         <pathelement location="target"/>
@@ -73,17 +77,24 @@
     </javac>
   </target>
 
-  <target name="test" depends="test-compile, compile, init">
+  <target name="test" depends="test-compile">
     <junit printsummary="on" haltonfailure="yes" fork="true">
     <classpath>
       <path refid="junit"/>
       <path refid="hamcrest"/>
-      <pathelement location="target"/>
+      <path refid="okio" />
+      <path refid="okhttp" />
+      <path refid="gson" />
+      <path refid="simple-json" />
+      <path refid="junit"/>
+      <path refid="hamcrest"/>
+      <pathelement location="${testDestDir}"/>
+      <pathelement location="${outputDir}"/>
     </classpath>
 
     <formatter type="brief" usefile="false" />
     <batchtest>
-        <fileset dir="test/main/java" includes="*Test.java" />
+        <fileset dir="${testSrcDir}" includes="*Test.java" />
     </batchtest>
 </junit>
   </target>
