@@ -162,6 +162,17 @@ public class AirPollutionGatherer{
   }
 
   /**
+   * Constructs and returns the file writing path
+   * but public
+   * @param  year year as a string
+   * @return final endpoint
+   */
+  public String getFileWritePathPublic(String year){
+    return this.BASE_DIRECTORY + "/" + year;
+  }
+
+
+  /**
    * Saves data to file given to path
    * @param path location to save file
    */
@@ -170,5 +181,23 @@ public class AirPollutionGatherer{
     System.out.println("saving to " + path);
     JSONWriter.writeToJsonFile(data, path, this.FILE_NAME);
   }
+
+  /**
+   * Get file name
+   * @return file_name
+   */
+  public String getFileName(){
+    return this.FILE_NAME;
+  }
+
+  /**
+   * get base directory
+   * @return base directory
+   */
+  public String getBaseDir(){
+    return this.BASE_DIRECTORY;
+  }
+
+
 
 }
