@@ -92,7 +92,7 @@ public class SiteJSONObjectsTest extends TestCase  {
 
    @Test
    public void testSiteSetDataOwner(){
-     System.out.println("Testing DataOwner getter");
+     System.out.println("Testing DataOwner setter");
      String input = "input";
      this.siteInfo.getListOfSites().get(0).setDataOwner(input);
      assertEquals(this.siteInfo.getListOfSites().get(0).getDataOwner(),
@@ -108,12 +108,230 @@ public class SiteJSONObjectsTest extends TestCase  {
 
    @Test
    public void testSiteSetDateClosed(){
-     System.out.println("Testing DataOwner getter");
+     System.out.println("Testing DataOwner setter");
      String input = "input";
      this.siteInfo.getListOfSites().get(0).setDateClosed(input);
      assertEquals(this.siteInfo.getListOfSites().get(0).getDateClosed(),
         input);
    }
+
+   @Test
+   public void testSiteGetDateOpened(){
+     System.out.println("Testing DateOpened getter");
+     assertEquals(this.siteInfo.getListOfSites().get(0).getDateOpened(),
+        "2007-03-16 00:00:00");
+   }
+
+   @Test
+   public void testSiteSetDateOpened(){
+     System.out.println("Testing DateOpened setter");
+     String input = "input";
+     this.siteInfo.getListOfSites().get(0).setDateOpened(input);
+     assertEquals(this.siteInfo.getListOfSites().get(0).getDateOpened(),
+        input);
+   }
+
+   @Test
+   public void testSiteGetDisplayOffsetX(){
+     System.out.println("Testing DisplayOffsetX getter");
+     assertEquals(this.siteInfo.getListOfSites().get(0).getDisplayOffsetX(),
+        "0");
+   }
+
+   @Test
+   public void testSiteSetDisplayOffsetX(){
+     System.out.println("Testing DisplayOffsetX setter");
+     String input = "input";
+     this.siteInfo.getListOfSites().get(0).setDisplayOffsetX(input);
+     assertEquals(this.siteInfo.getListOfSites().get(0).getDisplayOffsetX(),
+        input);
+   }
+
+
+   @Test
+   public void testSiteGetDisplayOffsetY(){
+     System.out.println("Testing DisplayOffsetY getter");
+     assertEquals(this.siteInfo.getListOfSites().get(0).getDisplayOffsetY(),
+        "0");
+   }
+
+   @Test
+   public void testSiteSetDisplayOffsetY(){
+     System.out.println("Testing DisplayOffsetY setter");
+     String input = "input";
+     this.siteInfo.getListOfSites().get(0).setDisplayOffsetY(input);
+     assertEquals(this.siteInfo.getListOfSites().get(0).getDisplayOffsetY(),
+        input);
+   }
+
+   @Test
+   public void testSiteGetLatitude(){
+     System.out.println("Testing Latitude getter");
+     assertEquals(this.siteInfo.getListOfSites().get(0).getLatitude(),
+        "51.540444");
+   }
+
+   @Test
+   public void testSiteSetLatitude(){
+     System.out.println("Testing Latitude setter");
+     String input = "input";
+     this.siteInfo.getListOfSites().get(0).setLatitude(input);
+     assertEquals(this.siteInfo.getListOfSites().get(0).getLatitude(),
+        input);
+   }
+
+   @Test
+   public void testSiteGetLatitudeWGS84(){
+     System.out.println("Testing LatitudeWGS84 getter");
+     assertEquals(this.siteInfo.getListOfSites().get(0).getLatitudeWGS84(),
+        "6717454.5833");
+   }
+
+   @Test
+   public void testSiteSetLatitudeWGS84(){
+     System.out.println("Testing LatitudeWGS84 setter");
+     String input = "input";
+     this.siteInfo.getListOfSites().get(0).setLatitudeWGS84(input);
+     assertEquals(this.siteInfo.getListOfSites().get(0).getLatitudeWGS84(),
+        input);
+   }
+
+   @Test
+   public void testSiteGetLocalAuthorityCode(){
+     System.out.println("Testing LocalAuthorityCode getter");
+     assertEquals(this.siteInfo.getListOfSites().get(0).getLocalAuthorityCode(),
+        "1");
+   }
+
+   @Test
+   public void testSiteSetLocalAuthorityCode(){
+     System.out.println("Testing LocalAuthorityCode setter");
+     String input = "input";
+     this.siteInfo.getListOfSites().get(0).setLocalAuthorityCode(input);
+     assertEquals(this.siteInfo.getListOfSites().get(0).getLocalAuthorityCode(),
+        input);
+   }
+
+   @Test
+   public void testSiteGetLocalAuthorityName(){
+     System.out.println("Testing LocalAuthorityName getter");
+     assertEquals(this.siteInfo.getListOfSites().get(0).getLocalAuthorityName(),
+        "Barking and Dagenham");
+   }
+
+   @Test
+   public void testSiteSetLocalLocalAuthorityName(){
+     System.out.println("Testing LocalAuthorityName setter");
+     String input = "input";
+     this.siteInfo.getListOfSites().get(0).setLocalAuthorityName(input);
+     assertEquals(this.siteInfo.getListOfSites().get(0).getLocalAuthorityName(),
+        input);
+   }
+
+   @Test
+   public void testSiteGetLongitude(){
+     System.out.println("Testing Longitude getter");
+     assertEquals(this.siteInfo.getListOfSites().get(0).getLongitude(),
+        "0.074418");
+   }
+
+   @Test
+   public void testSiteSetLongitude(){
+     System.out.println("Testing Longitude setter");
+     String input = "input";
+     this.siteInfo.getListOfSites().get(0).setLongitude(input);
+     assertEquals(this.siteInfo.getListOfSites().get(0).getLongitude(),
+        input);
+   }
+
+   @Test
+   public void testSiteGetLongitudeWGS84(){
+     System.out.println("Testing Longitude getter");
+     assertEquals(this.siteInfo.getListOfSites().get(0).getLongitudeWGS84(),
+        "8284.17386585");
+   }
+
+   @Test
+   public void testSiteSetLongitudeWGS84(){
+     System.out.println("Testing Longitude setter");
+     String input = "input";
+     this.siteInfo.getListOfSites().get(0).setLongitudeWGS84(input);
+     assertEquals(this.siteInfo.getListOfSites().get(0).getLongitudeWGS84(),
+        input);
+   }
+
+   @Test
+   public void testSiteGetSiteCode(){
+     System.out.println("Testing SiteCode getter");
+     assertEquals(this.siteInfo.getListOfSites().get(0).getSiteCode(),
+        "BG3");
+   }
+
+   @Test
+   public void testSiteSetSiteCode(){
+     System.out.println("Testing SiteCode setter");
+     String input = "input";
+     this.siteInfo.getListOfSites().get(0).setSiteCode(input);
+     assertEquals(this.siteInfo.getListOfSites().get(0).getSiteCode(),
+        input);
+   }
+
+   @Test
+   public void testSiteGetSiteLink(){
+     System.out.println("Testing SiteLink getter");
+     assertEquals(this.siteInfo.getListOfSites().get(0).getSiteLink(),
+        "http://www.londonair.org.uk/london/asp/publicdetails.asp?site=BG3");
+   }
+
+   @Test
+   public void testSiteSetSiteLink(){
+     System.out.println("Testing SiteLink setter");
+     String input = "input";
+     this.siteInfo.getListOfSites().get(0).setSiteCode(input);
+     assertEquals(this.siteInfo.getListOfSites().get(0).getSiteCode(),
+        input);
+   }
+
+   @Test
+   public void testSiteGetSiteName(){
+     System.out.println("Testing SiteName getter");
+     assertEquals(this.siteInfo.getListOfSites().get(0).getSiteName(),
+     "Barking and Dagenham - North Street");
+   }
+
+   @Test
+   public void testSiteSetSiteName(){
+     System.out.println("Testing SiteName setter");
+     String input = "input";
+     this.siteInfo.getListOfSites().get(0).setSiteName(input);
+     assertEquals(this.siteInfo.getListOfSites().get(0).getSiteName(),
+      input);
+   }
+
+   @Test
+   public void testSiteGetSiteType(){
+     System.out.println("Testing SiteType getter");
+     assertEquals(this.siteInfo.getListOfSites().get(0).getSiteType(),
+     "Kerbside");
+   }
+
+   @Test
+   public void testSiteSetSiteType(){
+     System.out.println("Testing SiteType setter");
+     String input = "input";
+     this.siteInfo.getListOfSites().get(0).setSiteType(input);
+     assertEquals(this.siteInfo.getListOfSites().get(0).getSiteType(),
+      input);
+   }
+
+
+
+
+
+
+
+
+
 
 
    // @Test
