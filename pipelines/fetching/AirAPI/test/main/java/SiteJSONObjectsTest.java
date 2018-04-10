@@ -325,42 +325,6 @@ public class SiteJSONObjectsTest extends TestCase  {
    }
 
 
-
-
-
-
-
-
-
-
-
-   // @Test
-   // public void testListOfSitesExist(){
-   //   System.out.println("Testing SiteList");
-   //   assertNotNull(this.pollutionInfo.getSiteReport().getList());
-   // }
-
-   // @Test
-   // public void testLongitudeSettingAndGetting(){
-   //   System.out.println("Testing longitude setting and getting");
-   //   String testLong = "LONGTEST";
-   //   this.pollutionInfo.getSiteReport().setLongitgude(testLong);
-   //   assertEquals(this.pollutionInfo.getSiteReport().getLongitude(), testLong);
-   // }
-   //
-   // @Test
-   // public void testLattitudeSettingAndGetting(){
-   //   System.out.println("Testing Lattitude setting and getting");
-   //   String testLat = "LATTEST";
-   //   this.pollutionInfo.getSiteReport().setLongitgude(testLat);
-   //   assertEquals(this.pollutionInfo.getSiteReport().getLatitude(), testLat);
-   // }
-
-
-
-
-
-
    //tearDown used to close the connection or clean up activities
    public void tearDown() {
 
