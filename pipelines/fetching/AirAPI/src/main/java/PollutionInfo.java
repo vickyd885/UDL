@@ -65,6 +65,9 @@ class SiteReport{
   public void setLatitude(String latitude){
     this.latitude = latitude;
   }
+
+
+  
 }
 
 class PollutionItem{
