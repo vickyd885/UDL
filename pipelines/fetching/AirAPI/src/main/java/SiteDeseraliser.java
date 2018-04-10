@@ -6,16 +6,26 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 
-
+/**
+ * SiteDeseraliser essentially converts a JSON string into the Site object,
+ * specifying how the conversion should be done
+ */
 public class SiteDeseraliser implements JsonDeserializer<Site> {
 
+  /**
+   * [deserialize description]
+   * @param  json               json elment
+   * @param  typeOfT            type
+   * @param  context            JsonDeserializationContext
+   * @return Site               native site object
+   * @throws JsonParseException error passing JSON string
+   */
   @Override
   public Site deserialize(final JsonElement json,
                           final Type typeOfT,
                           final JsonDeserializationContext context)
       throws JsonParseException
   {
-
 
     final JsonObject jsonObject = json.getAsJsonObject();
 

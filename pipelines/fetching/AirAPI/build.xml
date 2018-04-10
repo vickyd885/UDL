@@ -16,7 +16,13 @@
      <pathelement location="lib/gson-2.6.2.jar" />
    </path>
 
+   <path id="junit">
+     <pathelement location="lib/junit-4.12.jar" />
+   </path>
 
+   <path id="hamcrest">
+     <pathelement location="lib/hamcrest-core-1.3.jar" />
+   </path>
 
    <path id="classfiles">
      <pathelement location="target" />
@@ -29,6 +35,8 @@
    <target name="init">
       <property name="sourceDir" value="src" />
       <property name="outputDir" value="target" />
+      <property name="testSrcDir" value="test/main/java" />
+      <property name="testDestDir" value="target_test"/>
    </target>
 
    <target name="clean" depends="init">
@@ -52,5 +60,42 @@
      <java classname="Execute" classpathref="runtime.path">
        <classpath refid="classfiles"/>
      </java>
+  </target>
+
+  <target name="test-compile" depends="init">
+    <mkdir dir="${testDestDir}"/>
+    <javac srcdir="${testSrcDir}" destdir="${testDestDir}" includeantruntime="false">
+      <classpath>
+        <path refid="okio" />
+        <path refid="okhttp" />
+        <path refid="gson" />
+        <path refid="simple-json" />
+        <path refid="junit"/>
+        <path refid="hamcrest"/>
+        <pathelement location="target"/>
+      </classpath>
+    </javac>
+  </target>
+
+  <target name="test" depends="compile, test-compile ">
+    <junit printsummary="on" haltonfailure="yes" fork="true">
+    <classpath>
+      <path refid="junit"/>
+      <path refid="hamcrest"/>
+      <path refid="okio" />
+      <path refid="okhttp" />
+      <path refid="gson" />
+      <path refid="simple-json" />
+      <path refid="junit"/>
+      <path refid="hamcrest"/>
+      <pathelement location="${testDestDir}"/>
+      <pathelement location="${outputDir}"/>
+    </classpath>
+
+    <formatter type="brief" usefile="false" />
+    <batchtest>
+        <fileset dir="${testSrcDir}" includes="*Test.java" />
+    </batchtest>
+</junit>
   </target>
 </project>
