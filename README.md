@@ -17,6 +17,14 @@ Build instructions for Jupyter Notebook Spark Interface are provided in
 - `jupyter_notebook_config.py` contains the settings for the JN installation
 - `jupyternotebook.service` contains the conf file for the systemd service
 
+Once you've installed the bare bones jupyternotebook service, tap in your virtualenv and type
+
+```
+jupyter toree install --spark_home=$your_spark_path
+```
+
+toree should be installed with the requirements file I have provided.
+
 ### Docker Build Test
 
 The main goal of the Dockerfile found in `jupyter_notebook/Dockerfile` is
@@ -89,7 +97,7 @@ docker_up.sh
 ```
 
 Once the server is up, remember to call `save_data.py` to make SQL
-queries to the server, or make calls any other way.
+queries to the server, or make calls any other way. For dependencies, you can build a virtualenv from `jupyter-experiments/requirements.txt`
 
 If there are port mapping issues, this can be simple set in the
 `docker-compose.yml` file.
