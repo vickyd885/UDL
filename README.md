@@ -1,6 +1,6 @@
 # UDL
 
-Vicky Dineshchandra's final year project for UCL's Urban Design Lab.
+Vicky Dineshchandra's final year project for UCL's Urban Dynamics Lab.
 
 The goal of this README is to inform the reader how to run some of the
 functionality associated with the project. A full explanation of what
